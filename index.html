@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rohan &amp; Tanu | Wedding Invitation</title>
+  <meta name="description" content="Join us as we celebrate the wedding of Rohan &amp; Tanu — a royal love story." />
+
+  <!-- Google Fonts: Great Vibes (display/script) + Poppins (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="light">
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__monogram">R <span>&amp;</span> T</div>
+    <div class="preloader__line"></div>
+    <p class="preloader__text">Weaving our story together&hellip;</p>
+  </div>
+
+  <!-- ============ BACKGROUND ANIMATION LAYERS ============ -->
+  <!-- Falling rose petals, floating hearts and sparkles are injected here by script.js -->
+  <div class="fx-layer" id="petals-layer" aria-hidden="true"></div>
+  <div class="fx-layer" id="hearts-layer" aria-hidden="true"></div>
+  <div class="fx-layer" id="sparkles-layer" aria-hidden="true"></div>
+
+  <!-- Fireworks + confetti render onto canvases layered above content on demand -->
+  <canvas id="fireworks-canvas" aria-hidden="true"></canvas>
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="site-nav" id="site-nav">
+    <div class="site-nav__inner">
+      <a href="#home" class="site-nav__logo">R <span class="amp">&amp;</span> T</a>
+
+      <nav class="site-nav__links" id="nav-links">
+        <a href="#couple" class="nav-link">The Couple</a>
+        <a href="#story" class="nav-link">Our Story</a>
+        <a href="#ceremony" class="nav-link">Ceremony</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#schedule" class="nav-link">Festivities</a>
+        <a href="#rsvp" class="nav-link">RSVP</a>
+        <a href="#wishes" class="nav-link">Wishes</a>
+      </nav>
+
+      <div class="site-nav__actions">
+        <!-- Background music control -->
+        <button class="icon-btn" id="music-toggle" type="button" aria-pressed="false" aria-label="Play background music">
+          <svg class="icon icon-play" viewBox="0 0 24 24" fill="none"><path d="M7 5.5v13l11-6.5-11-6.5z" fill="currentColor"/></svg>
+          <svg class="icon icon-pause" viewBox="0 0 24 24" fill="none"><path d="M6 5h4v14H6V5zm8 0h4v14h-4V5z" fill="currentColor"/></svg>
+        </button>
+
+        <!-- Dark / light mode toggle -->
+        <button class="icon-btn" id="theme-toggle" type="button" aria-pressed="false" aria-label="Toggle dark mode">
+          <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z" fill="currentColor"/></svg>
+        </button>
+
+        <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hidden audio element — swap the <source> below with your own royalty-free track -->
+  <audio id="bg-music" loop preload="none">
+    <source src="assets/romantic-music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <main>
+
+    <!-- ============ HERO / LANDING ============ -->
+    <section class="hero" id="home">
+      <div class="hero__frame" data-reveal>
+        <svg class="corner corner--tl" viewBox="0 0 120 120" aria-hidden="true"><use href="#ornament-corner"/></svg>
+        <svg class="corner corner--tr" viewBox="0 0 120 120" aria-hidden="true"><use href="#ornament-corner"/></svg>
+        <svg class="corner corner--bl" viewBox="0 0 120 120" aria-hidden="true"><use href="#ornament-corner"/></svg>
+        <svg class="corner corner--br" viewBox="0 0 120 120" aria-hidden="true"><use href="#ornament-corner"/></svg>
+
+        <p class="hero__eyebrow" data-reveal>The Wedding Of</p>
+        <h1 class="hero__names" data-reveal>Rohan <span class="heart-glyph">&#10084;</span> Tanu</h1>
+        <p class="hero__tagline" data-reveal>Together Forever</p>
+
+        <div class="hero__divider" data-reveal aria-hidden="true">
+          <span></span><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 21s-7.1-4.6-9.8-9.1C.5 8.6 1.8 5 5.3 4.1 7.5 3.5 9.8 4.6 12 7.3c2.2-2.7 4.5-3.8 6.7-3.2 3.5.9 4.8 4.5 3.1 7.8C19.1 16.4 12 21 12 21z" fill="currentColor"/></svg><span></span>
+        </div>
+
+        <p class="hero__subtitle" data-reveal>Wedding Invitation</p>
+        <p class="hero__date" data-reveal>12 · December · 2026 &nbsp;&middot;&nbsp; Udaipur, Rajasthan</p>
+
+        <button class="btn btn--gold btn--pulse" id="save-date-btn" type="button" data-reveal>
+          Save the Date
+        </button>
+      </div>
+
+      <a href="#couple" class="hero__scroll-cue" aria-label="Scroll to content">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- Reusable ornament definitions -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <symbol id="ornament-corner" viewBox="0 0 120 120">
+        <path d="M4 116V44C4 21.9 21.9 4 44 4h72" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M4 96V64C4 45.7 18.7 31 37 31h27" fill="none" stroke="currentColor" stroke-width="1"/>
+        <circle cx="4" cy="116" r="3.4" fill="currentColor"/>
+        <path d="M37 31c6 0 10 4.2 10 10s-4 10-10 10-10-4.2-10-10c0-4.4 2.4-7.9 6-9.4" fill="none" stroke="currentColor" stroke-width="1"/>
+      </symbol>
+      <symbol id="ornament-divider" viewBox="0 0 300 40">
+        <path d="M0 20h110" stroke="currentColor" stroke-width="1"/>
+        <path d="M190 20h110" stroke="currentColor" stroke-width="1"/>
+        <circle cx="150" cy="20" r="5" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M150 8c8 0 12 5 12 12s-4 12-12 12-12-5-12-12 4-12 12-12z" fill="none" stroke="currentColor" stroke-width="1"/>
+        <circle cx="122" cy="20" r="2.4" fill="currentColor"/>
+        <circle cx="178" cy="20" r="2.4" fill="currentColor"/>
+      </symbol>
+    </svg>
+
+    <!-- ============ SECTION DIVIDER (reusable) template shown via CSS ::before on .section-divider -->
+
+    <!-- ============ COUPLE INTRODUCTION ============ -->
+    <section class="section" id="couple">
+      <p class="eyebrow" data-reveal>Meet</p>
+      <h2 class="section-title" data-reveal>The Bride &amp; Groom</h2>
+      <svg class="ornament-divider" viewBox="0 0 300 40" data-reveal><use href="#ornament-divider"/></svg>
+
+      <div class="couple-grid">
+        <article class="couple-card glass-card" data-reveal>
+          <div class="couple-card__photo">
+            <img src="https://picsum.photos/seed/rohan-groom/500/620" alt="Portrait of Rohan, the groom" loading="lazy" />
+          </div>
+          <h3 class="couple-card__name">Rohan Malhotra</h3>
+          <p class="couple-card__role">The Groom</p>
+          <p class="couple-card__bio">Son of Mr. &amp; Mrs. Malhotra. A dreamer with a quiet heart, happiest with a good book, a long drive, and Tanu's laughter filling the room.</p>
+          <div class="couple-card__social" aria-hidden="true">
+            <span class="chip">Coffee &gt; everything</span>
+            <span class="chip">Hopeless romantic</span>
+          </div>
+        </article>
+
+        <div class="couple-grid__amp" data-reveal aria-hidden="true">&amp;</div>
+
+        <article class="couple-card glass-card" data-reveal>
+          <div class="couple-card__photo">
+            <img src="https://picsum.photos/seed/tanu-bride/500/620" alt="Portrait of Tanu, the bride" loading="lazy" />
+          </div>
+          <h3 class="couple-card__name">Tanu Sharma</h3>
+          <p class="couple-card__role">The Bride</p>
+          <p class="couple-card__bio">Daughter of Mr. &amp; Mrs. Sharma. Graceful and full of light, she finds magic in small moments — and has finally found her forever in Rohan.</p>
+          <div class="couple-card__social" aria-hidden="true">
+            <span class="chip">Sunset chaser</span>
+            <span class="chip">Forever curious</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ LOVE STORY TIMELINE ============ -->
+    <section class="section section--tinted" id="story">
+      <p class="eyebrow" data-reveal>Our Journey</p>
+      <h2 class="section-title" data-reveal>A Love Story</h2>
+      <svg class="ornament-divider" viewBox="0 0 300 40" data-reveal><use href="#ornament-divider"/></svg>
+
+      <ol class="timeline">
+        <li class="timeline__item" data-reveal>
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass-card">
+            <span class="timeline__year">2019 &middot; Spring</span>
+            <h3>The First Hello</h3>
+            <p>A chance introduction at a mutual friend's gathering turned into a conversation that lasted till midnight. Neither of them remembers who laughed first.</p>
+          </div>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass-card">
+            <span class="timeline__year">2021 &middot; Monsoon</span>
+            <h3>Falling, Slowly</h3>
+            <p>Long calls turned into long drives. Somewhere between rainy evenings and shared playlists, friendship quietly became something more.</p>
+          </div>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass-card">
+            <span class="timeline__year">2023 &middot; Winter</span>
+            <h3>Yes, Always</h3>
+            <p>Under a canopy of fairy lights, Rohan asked and Tanu said yes before he could even finish the sentence.</p>
+          </div>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass-card">
+            <span class="timeline__year">2026 &middot; December</span>
+            <h3>Forever Begins</h3>
+            <p>Two families, one celebration — Rohan &amp; Tanu begin their forever, and they would love for you to be there.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ COUNTDOWN ============ -->
+    <section class="countdown" id="countdown">
+      <div class="countdown__inner">
+        <p class="eyebrow eyebrow--light" data-reveal>Counting Down To</p>
+        <h2 class="section-title section-title--light" data-reveal>The Big Day</h2>
+
+        <div class="countdown__grid" id="countdown-grid" data-reveal>
+          <div class="countdown__box glass-card glass-card--dark">
+            <span class="countdown__num" id="cd-days">00</span>
+            <span class="countdown__label">Days</span>
+          </div>
+          <div class="countdown__box glass-card glass-card--dark">
+            <span class="countdown__num" id="cd-hours">00</span>
+            <span class="countdown__label">Hours</span>
+          </div>
+          <div class="countdown__box glass-card glass-card--dark">
+            <span class="countdown__num" id="cd-mins">00</span>
+            <span class="countdown__label">Minutes</span>
+          </div>
+          <div class="countdown__box glass-card glass-card--dark">
+            <span class="countdown__num" id="cd-secs">00</span>
+            <span class="countdown__label">Seconds</span>
+          </div>
+        </div>
+
+        <p class="countdown__message" id="countdown-message" hidden>They're married! Join the celebration. &#127881;</p>
+
+        <button class="btn btn--outline-gold" id="celebrate-btn" type="button" data-reveal>
+          &#127881; Celebrate With Us
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ CEREMONY DETAILS ============ -->
+    <section class="section" id="ceremony">
+      <p class="eyebrow" data-reveal>Join Us</p>
+      <h2 class="section-title" data-reveal>Ceremony Details</h2>
+      <svg class="ornament-divider" viewBox="0 0 300 40" data-reveal><use href="#ornament-divider"/></svg>
+
+      <div class="ceremony-card glass-card" data-reveal>
+        <div class="ceremony-card__grid">
+          <div class="ceremony-detail">
+            <svg class="ceremony-detail__icon" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <h3>Date</h3>
+            <p>Saturday, 12th December 2026</p>
+          </div>
+          <div class="ceremony-detail">
+            <svg class="ceremony-detail__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <h3>Time</h3>
+            <p>10:00 AM &mdash; Wedding Ceremony<br />7:00 PM &mdash; Reception</p>
+          </div>
+          <div class="ceremony-detail">
+            <svg class="ceremony-detail__icon" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="9.5" r="2.4" stroke="currentColor" stroke-width="1.5"/></svg>
+            <h3>Venue</h3>
+            <p>The Grand Palace Gardens<br />Udaipur, Rajasthan</p>
+          </div>
+        </div>
+
+        <a class="btn btn--gold" id="maps-btn" href="https://www.google.com/maps/search/?api=1&query=Udaipur%2C%20Rajasthan" target="_blank" rel="noopener noreferrer">
+          View on Google Maps
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ GALLERY ============ -->
+    <section class="section section--tinted" id="gallery">
+      <p class="eyebrow" data-reveal>Moments</p>
+      <h2 class="section-title" data-reveal>Our Gallery</h2>
+      <svg class="ornament-divider" viewBox="0 0 300 40" data-reveal><use href="#ornament-divider"/></svg>
+
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- Replace picsum placeholder photos with your real engagement / pre-wedding photos -->
+        <button class="gallery-item" data-reveal data-full="https://picsum.photos/seed/wed-1/1200/1500" data-caption="The proposal, 2023">
+          <img src="https://picsum.photos/seed/wed-1/500/620" alt="Rohan and Tanu at their proposal" loading="lazy" />
+        </button>
+        <button class="gallery-item" data-reveal data-full="https://picsum.photos/seed/wed-2/1400/1000" data-caption="Sunset by the lake">
+          <img src="https://picsum.photos/seed/wed-2/620/480" alt="Rohan and Tanu by the lake" loading="lazy" />
+        </button>
+        <button class="gallery-item" data-reveal data-full="https://picsum.photos/seed/wed-3/1200/1500" data-caption="Pre-wedding shoot, Udaipur">
+          <img src="https://picsum.photos/seed/wed-3/500/620" alt="Pre-wedding photoshoot in Udaipur" loading="lazy" />
+        </button>
+        <button class="gallery-item" data-reveal data-full="https://picsum.photos/seed/wed-4/1400/1000" data-caption="With family">
+          <img src="https://picsum.photos/seed/wed-4/620/480" alt="Rohan and Tanu with family" loading="lazy" />
+        </button>
+        <button class="gallery-item" data-reveal data-full="https://picsum.photos/seed/wed-5/1200/1500" data-caption="Engagement day">
+          <img src="https://picsum.photos/seed/wed-5/500/620" alt="Rohan and Tanu on their engagement day" loading="lazy" />
+        </button>
+        <button class="gallery-item" data-reveal data-full="https://picsum.photos/seed/wed-6/1400/1000" data-caption="Just the two of us">
+          <img src="https://picsum.photos/seed/wed-6/620/480" alt="Rohan and Tanu together" loading="lazy" />
+        </button>
+      </div>
+    </section>
+
+    <!-- Lightbox modal for gallery -->
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">
+      <button class="lightbox__close" id="lightbox-close" type="button" aria-label="Close photo viewer">&times;</button>
+      <button class="lightbox__nav lightbox__nav--prev" id="lightbox-prev" type="button" aria-label="Previous photo">&#10094;</button>
+      <figure class="lightbox__figure">
+        <img id="lightbox-img" src="" alt="" />
+        <figcaption id="lightbox-caption"></figcaption>
+      </figure>
+      <button class="lightbox__nav lightbox__nav--next" id="lightbox-next" type="button" aria-label="Next photo">&#10095;</button>
+    </div>
+
+    <!-- ============ WEDDING SCHEDULE ============ -->
+    <section class="section" id="schedule">
+      <p class="eyebrow" data-reveal>Festivities</p>
+      <h2 class="section-title" data-reveal>Wedding Schedule</h2>
+      <svg class="ornament-divider" viewBox="0 0 300 40" data-reveal><use href="#ornament-divider"/></svg>
+
+      <div class="schedule-grid">
+        <article class="schedule-card glass-card" data-reveal>
+          <div class="schedule-card__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3c2 3 4 5 4 8a4 4 0 1 1-8 0c0-3 2-5 4-8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+          <span class="schedule-card__date">10 Dec &middot; 9:00 AM</span>
+          <h3>Haldi</h3>
+          <p>A joyful turmeric ceremony to bless the couple, held at the family residence lawn.</p>
+        </article>
+
+        <article class="schedule-card glass-card" data-reveal>
+          <div class="schedule-card__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v2M12 3c3 3 2 6-1 7 3-1 5 1 4 4-2-2-4-1-4 2 0-3-2-4-4-2-1-3 1-5 4-4-3-1-4-4-1-7z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+          <span class="schedule-card__date">10 Dec &middot; 4:00 PM</span>
+          <h3>Mehendi</h3>
+          <p>Intricate henna artistry and music, celebrating beauty and tradition with loved ones.</p>
+        </article>
+
+        <article class="schedule-card glass-card" data-reveal>
+          <div class="schedule-card__icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="16" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M12 13V5l5 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="schedule-card__date">11 Dec &middot; 7:00 PM</span>
+          <h3>Sangeet</h3>
+          <p>An evening of music, dance and performances by both families &mdash; dancing shoes required!</p>
+        </article>
+
+        <article class="schedule-card glass-card" data-reveal>
+          <div class="schedule-card__icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="8.5" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="15.5" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/></svg></div>
+          <span class="schedule-card__date">12 Dec &middot; 10:00 AM</span>
+          <h3>Wedding</h3>
+          <p>The sacred wedding ceremony at The Grand Palace Gardens, Udaipur.</p>
+        </article>
+
+        <article class="schedule-card glass-card" data-reveal>
+          <div class="schedule-card__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M8 4l1 6a3 3 0 0 0 6 0l1-6M12 10v9M9 21h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="schedule-card__date">12 Dec &middot; 7:00 PM</span>
+          <h3>Reception</h3>
+          <p>An elegant evening of dinner, toasts, and dancing to celebrate the newlyweds.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ RSVP FORM ============ -->
+    <section class="section section--tinted" id="rsvp">
+      <p class="eyebrow" data-reveal>Kindly Respond</p>
+      <h2 class="section-title" data-reveal>RSVP</h2>
+      <svg class="ornament-divider" viewBox="0 0 300 40" data-reveal><use href="#ornament-divider"/></svg>
+      <p class="section-lead" data-reveal>We would be honoured to have you celebrate with us. Please let us know if you'll be joining.</p>
+
+      <form class="rsvp-form glass-card" id="rsvp-form" data-reveal novalidate>
+        <div class="form-row">
+          <label for="rsvp-name">Full Name</label>
+          <input type="text" id="rsvp-name" name="name" placeholder="Your name" required />
+        </div>
+
+        <div class="form-row form-row--split">
+          <div>
+            <label for="rsvp-guests">Number of Guests</label>
+            <input type="number" id="rsvp-guests" name="guests" min="1" max="10" value="1" required />
+          </div>
+          <div>
+            <label for="rsvp-attending">Will you attend?</label>
+            <select id="rsvp-attending" name="attending">
+              <option value="yes">Joyfully Accepts</option>
+              <option value="no">Regretfully Declines</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="rsvp-message">Message for the Couple</label>
+          <textarea id="rsvp-message" name="message" rows="4" placeholder="Leave a note for Rohan &amp; Tanu (optional)"></textarea>
+        </div>
+
+        <button class="btn btn--gold" type="submit">Send RSVP</button>
+
+        <p class="form-success" id="rsvp-success" role="status" hidden>
+          &#10024; Thank you! Your RSVP has been received.
+        </p>
+      </form>
+    </section>
+
+    <!-- ============ WISHES ============ -->
+    <section class="section" id="wishes">
+      <p class="eyebrow" data-reveal>Blessings</p>
+      <h2 class="section-title" data-reveal>Wishes for the Couple</h2>
+      <svg class="ornament-divider" viewBox="0 0 300 40" data-reveal><use href="#ornament-divider"/></svg>
+
+      <form class="wish-form" id="wish-form" data-reveal novalidate>
+        <input type="text" id="wish-name" placeholder="Your name" required />
+        <input type="text" id="wish-text" placeholder="Write a short wish&hellip;" required />
+        <button class="btn btn--outline-gold" type="submit">Add Wish</button>
+      </form>
+
+      <div class="wishes-grid" id="wishes-grid">
+        <!-- Sample wishes; new ones are prepended here by script.js -->
+        <article class="wish-card glass-card" data-reveal>
+          <p>&ldquo;Wishing you a lifetime of love, laughter and endless adventures together.&rdquo;</p>
+          <span>&mdash; Aunt Meera</span>
+        </article>
+        <article class="wish-card glass-card" data-reveal>
+          <p>&ldquo;May your love story continue to inspire everyone around you. Congratulations!&rdquo;</p>
+          <span>&mdash; Karan &amp; Isha</span>
+        </article>
+        <article class="wish-card glass-card" data-reveal>
+          <p>&ldquo;Two beautiful souls, one beautiful journey. So happy for you both!&rdquo;</p>
+          <span>&mdash; Priya</span>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="site-footer__monogram">R <span class="amp">&amp;</span> T</div>
+    <p class="site-footer__names">Rohan &amp; Tanu</p>
+    <p class="site-footer__date">12th December 2026 &middot; Udaipur, Rajasthan</p>
+    <svg class="ornament-divider ornament-divider--light" viewBox="0 0 300 40"><use href="#ornament-divider"/></svg>
+    <p class="site-footer__credit">Made with <span class="heart-glyph">&#10084;</span> for Rohan &amp; Tanu</p>
+    <a href="#home" class="back-to-top" id="back-to-top" aria-label="Back to top">&#8593;</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
